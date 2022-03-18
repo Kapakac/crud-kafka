@@ -3,10 +3,11 @@ version: '3.9'
 services:
   db:
     image: postgres
+    container_name: "${CONTAINER_DB_NAME}"
     ports:
-      - '5432:5432'
+      - '5464:5432'
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 6464
-      POSTGRES_DB: pet
+      POSTGRES_USER: "${APP_DB_USERNAME}"
+      POSTGRES_PASSWORD: "${APP_DB_PASSWORD}"
+      POSTGRES_DB: "${APP_DB_PG}"
       TZ: Europe/Moscow
