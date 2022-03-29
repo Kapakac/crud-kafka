@@ -1,0 +1,15 @@
+BEGIN;
+
+DROP TABLE IF EXISTS quasi_countries CASCADE;
+
+DROP TABLE IF EXISTS quasi_companies CASCADE;
+
+DROP TABLE IF EXISTS quasi_persons CASCADE;
+
+DROP TABLE IF EXISTS quasi_citizenship CASCADE;
+
+DROP TABLE IF EXISTS quasi_job CASCADE;
+
+DROP TABLE IF EXISTS funny_sanctions CASCADE;
+
+COMMIT;

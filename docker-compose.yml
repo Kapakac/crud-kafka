@@ -5,7 +5,7 @@ services:
     image: postgres
     container_name: "${CONTAINER_DB_NAME}"
     ports:
-      - '5464:5432'
+      - '${APP_DB_PORT}:5432'
     environment:
       POSTGRES_USER: "${APP_DB_USERNAME}"
       POSTGRES_PASSWORD: "${APP_DB_PASSWORD}"
