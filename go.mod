@@ -1,11 +1,17 @@
-module github.com/Kapakac/funny-sanctions
+module github.com/Kapakac/crud-kafka
 
-go 1.17
+go 1.18
 
 require (
 	github.com/gorilla/mux v1.8.0
 	github.com/lib/pq v1.10.4 // indirect
-	gorm.io/gorm v1.23.3
+	gorm.io/gorm v1.23.4
+)
+
+require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/joho/godotenv v1.4.0
+	gorm.io/driver/postgres v1.3.1
 )
 
 require (
@@ -19,8 +25,8 @@ require (
 	github.com/jackc/pgx/v4 v4.15.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
-	github.com/joho/godotenv v1.4.0 // indirect
+	github.com/mattn/go-sqlite3 v1.14.12 // indirect
 	golang.org/x/crypto v0.0.0-20220321153916-2c7772ba3064 // indirect
 	golang.org/x/text v0.3.7 // indirect
-	gorm.io/driver/postgres v1.3.1 // indirect
+	gorm.io/driver/sqlite v1.3.1 // indirect
 )

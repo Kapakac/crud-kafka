@@ -10,6 +10,4 @@ DROP TABLE IF EXISTS quasi_citizenship CASCADE;
 
 DROP TABLE IF EXISTS quasi_job CASCADE;
 
-DROP TABLE IF EXISTS funny_sanctions CASCADE;
-
 COMMIT;
