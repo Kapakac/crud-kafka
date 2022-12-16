@@ -1,44 +1,53 @@
 BEGIN;
 
+CREATE TABLE IF NOT EXISTS users
+(
+    id serial PRIMARY KEY,
+    email text UNIQUE,
+    name text NOT NULL,
+    hash text NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP
+);
+
+CREATE UNIQUE INDEX ON users ((lower(email)));
+
 CREATE TABLE IF NOT EXISTS quasi_countries
 (
-    id serial,
+    id serial PRIMARY KEY,
     country text NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP,
-    deleted_at TIMESTAMP,
-    CONSTRAINT PK_country PRIMARY KEY (id)
+    deleted_at TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS quasi_companies
 (
-    id serial,
+    id serial PRIMARY KEY,
     company text NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP,
-    deleted_at TIMESTAMP,
-    CONSTRAINT PK_company PRIMARY KEY (id)
+    deleted_at TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS quasi_persons
 (
-    id serial,
+    id serial PRIMARY KEY,
     name text NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP,
-    deleted_at TIMESTAMP,
-    CONSTRAINT PK_person PRIMARY KEY (id)
+    deleted_at TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS quasi_citizenship
 (
-    id serial,
+    id serial PRIMARY KEY,
     person_id integer NOT NULL REFERENCES quasi_persons (id),
     country_id integer NOT NULL REFERENCES quasi_countries (id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
-    CONSTRAINT PK_citizenship PRIMARY KEY (id),
     CONSTRAINT FK_person
         FOREIGN KEY (person_id)
             REFERENCES quasi_persons (id),
@@ -49,13 +58,12 @@ CREATE TABLE IF NOT EXISTS quasi_citizenship
 
 CREATE TABLE IF NOT EXISTS quasi_job
 (
-    id serial,
+    id serial PRIMARY KEY,
     person_id integer NOT NULL REFERENCES quasi_persons (id),
     company_id integer NOT NULL REFERENCES quasi_companies (id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
-    CONSTRAINT PK_job PRIMARY KEY (id),
     CONSTRAINT FK_person
         FOREIGN KEY (person_id)
             REFERENCES quasi_persons (id),

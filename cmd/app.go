@@ -2,6 +2,8 @@ package main
 
 import (
 	"github.com/Kapakac/crud-kafka/internal/pkg/database"
+	"github.com/Kapakac/crud-kafka/internal/pkg/handler"
+	"github.com/Kapakac/crud-kafka/internal/pkg/middleware"
 	"github.com/gorilla/mux"
 	"gorm.io/gorm"
 	"log"
@@ -26,6 +28,5 @@ func (a *App) Run(addr string) {
 }
 
 func (a *App) initializeRoutes() {
-	//a.Router.HandleFunc("/signup", SignUp).Methods("POST")
-	//a.Router.HandleFunc("/signin", SignIn).Methods("POST")
+	middleware.Get(a.Router, "/countries", handler.GetCountries)
 }
