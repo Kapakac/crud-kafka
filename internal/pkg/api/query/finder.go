@@ -11,5 +11,6 @@ type Finder struct {
 
 func (f Finder) All() interface{} {
 	database.DB.Limit(f.Count).Offset(f.Start).Find(&f.Arr)
+
 	return f.Arr
 }

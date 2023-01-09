@@ -29,4 +29,5 @@ func (a *App) Run(addr string) {
 
 func (a *App) initializeRoutes() {
 	middleware.Get(a.Router, "/countries", handler.GetCountries)
+	middleware.Get(a.Router, "/countries/{id}", handler.GetCountry)
 }

@@ -5,6 +5,6 @@ import (
 )
 
 type QuasiPersons struct {
-	gorm.Model `json:"model"`
-	Name       string `json:"Name"`
+	gorm.Model
+	Name string `json:"Name"`
 }

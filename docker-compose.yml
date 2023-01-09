@@ -5,9 +5,30 @@ services:
     image: postgres
     container_name: "${CONTAINER_DB_NAME}"
     ports:
-      - '${APP_DB_PORT}:5432'
+      - "${APP_DB_PORT}:5432"
     environment:
       POSTGRES_USER: "${APP_DB_USERNAME}"
       POSTGRES_PASSWORD: "${APP_DB_PASSWORD}"
       POSTGRES_DB: "${APP_DB_PG}"
       TZ: Europe/Moscow
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2180
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "22180:2180"
+
+  kafka:
+      image: confluentinc/cp-kafka:latest
+      depends_on:
+        - zookeeper
+      ports:
+        - "29090:29090"
+      environment:
+        KAFKA_BROKER_ID: 1
+        KAFKA_ZOOKEEPER_CONNECT: zookeeper:2180
+        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9090,PLAINTEXT_HOST://localhost:29090
+        KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+        KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+        KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1

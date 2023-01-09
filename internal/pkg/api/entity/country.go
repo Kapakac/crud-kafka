@@ -5,11 +5,11 @@ import (
 	"gorm.io/gorm"
 )
 
-type QuasiCountries struct {
+type QuasiCountry struct {
 	gorm.Model
 	Country string `json:"country"`
 }
 
 func GetCountries() interface{} {
-	return query.Finder{Arr: []QuasiCountries{}}.All()
+	return query.Finder{Arr: []QuasiCountry{}}.All()
 }
